@@ -105,7 +105,8 @@ public:
         TracktionGeneric,           /**< Represents Tracktion. */
         TracktionWaveform,          /**< Represents Tracktion Waveform. */
         VBVSTScanner,               /**< Represents VB Audio VST Scanner. */
-        WaveBurner                  /**< Represents Apple WaveBurner. */
+        WaveBurner,                 /**< Represents Apple WaveBurner. */
+        AudioWorklet
     };
 
     HostType type;
@@ -183,6 +184,7 @@ public:
     bool isWavelab() const noexcept           { return isWavelabLegacy() || type == SteinbergWavelab7 || type == SteinbergWavelab8 || type == SteinbergWavelabGeneric; }
     /** Returns true if the host is Steinberg WaveLab 6 or below. */
     bool isWavelabLegacy() const noexcept     { return type == SteinbergWavelab5 || type == SteinbergWavelab6; }
+    bool isAudioWorklet() const noexcept      { return type == AudioWorklet; }
 
     //==============================================================================
     /** Returns a human-readable description of the host. */
@@ -247,6 +249,7 @@ public:
             case TracktionWaveform:        return "Tracktion Waveform";
             case VBVSTScanner:             return "VBVSTScanner";
             case WaveBurner:               return "WaveBurner";
+            case AudioWorklet:             return "AudioWorklet";
             default:                       break;
         }
 
@@ -409,7 +412,10 @@ private:
         if (hostFilename.containsIgnoreCase   ("pluginval"))         return pluginval;
         if (hostFilename.containsIgnoreCase   ("AudioPluginHost"))   return JUCEPluginHost;
 
-       #elif JUCE_IOS
+        #elif JUCE_AUDIOWORKLET
+          return AudioWorklet;
+      
+        #elif JUCE_IOS
        #elif JUCE_ANDROID
        #else
         #error

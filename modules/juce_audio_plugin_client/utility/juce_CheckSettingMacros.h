@@ -31,6 +31,7 @@
         || JucePlugin_Build_AU || JucePlugin_Build_AUv3 \
         ||JucePlugin_Build_RTAS || JucePlugin_Build_AAX \
         || JucePlugin_Build_Standalone || JucePlugin_Build_LV2 \
+        || JucePlugin_Build_WAM \
         || JucePlugin_Build_Unity)
  #error "You need to enable at least one plugin format!"
 #endif

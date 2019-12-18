@@ -78,6 +78,8 @@
   #else
     #define     JUCE_MAC 1
   #endif
+#elif defined (AUDIOWORKLET)
+    #define     JUCE_AUDIOWORKLET 1
 #else
   #error "Unknown platform!"
 #endif
